@@ -1,11 +1,12 @@
 //
-//  Task3.swift
+//  Task3_Impl1.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 10/22/16.
 //  Copyright © 2016 Visput. All rights reserved.
 //
 
+// Question 1:
 // The file contains the adjacency list representation of a simple undirected graph. 
 // There are 200 vertices labeled 1 to 200. The first column in the file represents the vertex label, and the particular row 
 // (other entries except the first column) tells all the vertices that the vertex is adjacent to. 
@@ -21,7 +22,7 @@
 
 import CoreFoundation
 
-struct Task3 {
+struct Task3_Impl1 {
     
     static func executeQuestion1() {
         let inputAdjacencyList = StreamReader.readNumericAdjacencyList(from: "Task3_Input")
@@ -35,7 +36,7 @@ struct Task3 {
     }
 }
 
-extension Task3 {
+extension Task3_Impl1 {
     
     fileprivate static func minCut(in graph: Graph) -> Int {
         let iterationsCount = 20000 //graph.vertices.count * graph.vertices.count * Int(log(Double(graph.vertices.count)))
@@ -224,7 +225,7 @@ extension Task3 {
     }
 }
 
-extension Task3 {
+extension Task3_Impl1 {
     
     fileprivate struct Graph {
         var vertices: [Vertex]
