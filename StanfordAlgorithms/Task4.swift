@@ -46,13 +46,11 @@ extension Task4 {
         let numberOfVertices = 875714
         let reader = StreamReader(path: filePath)!
         
-        let nonNumericSet = CharacterSet.decimalDigits.inverted
-        
         var graph = DirectedGraph(numberOfVertices: numberOfVertices)
         var reversedGraph = DirectedGraph(numberOfVertices: numberOfVertices)
         
         for line in reader {
-            let lineResult = line.trimmingCharacters(in: nonNumericSet).components(separatedBy: nonNumericSet).map({ Int($0)! })
+            let lineResult = line.components(separatedBy: " ").flatMap({ Int($0) })
             
             reversedGraph.vertices[lineResult[1] - 1].edges.append(lineResult[0] - 1)
             graph.vertices[lineResult[0] - 1].edges.append(lineResult[1] - 1)

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9F11DE0F1DBC803B0017E4B6 /* Task3_TestInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F11DE0E1DBC803B0017E4B6 /* Task3_TestInput.txt */; };
-		9F272FDB1DCC2D6900244433 /* Task4_TestInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F272FDA1DCC2D6900244433 /* Task4_TestInput.txt */; };
 		9F51E9871DAA38B300894DB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51E9861DAA38B300894DB6 /* AppDelegate.swift */; };
 		9F51E9891DAA38B300894DB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51E9881DAA38B300894DB6 /* ViewController.swift */; };
 		9F51E98B1DAA38B300894DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F51E98A1DAA38B300894DB6 /* Assets.xcassets */; };
@@ -27,7 +26,6 @@
 
 /* Begin PBXFileReference section */
 		9F11DE0E1DBC803B0017E4B6 /* Task3_TestInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task3_TestInput.txt; sourceTree = "<group>"; };
-		9F272FDA1DCC2D6900244433 /* Task4_TestInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task4_TestInput.txt; sourceTree = "<group>"; };
 		9F51E9831DAA38B300894DB6 /* StanfordAlgorithms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StanfordAlgorithms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F51E9861DAA38B300894DB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F51E9881DAA38B300894DB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				9F6500B11DCC0933009F62D4 /* Task4_Input.txt */,
-				9F272FDA1DCC2D6900244433 /* Task4_TestInput.txt */,
 				9F6500B31DCC093C009F62D4 /* Task4.swift */,
 			);
 			name = Task4;
@@ -203,7 +200,6 @@
 				9FACAECD1DB2BB220094052C /* Task2_Input.txt in Resources */,
 				9F51E98E1DAA38B300894DB6 /* Main.storyboard in Resources */,
 				9F51E9991DAA38CC00894DB6 /* Task1_Input.txt in Resources */,
-				9F272FDB1DCC2D6900244433 /* Task4_TestInput.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
