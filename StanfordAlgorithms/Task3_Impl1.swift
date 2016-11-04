@@ -21,11 +21,12 @@
 // if your answer is 5, just type 5 in the space provided.
 
 import CoreFoundation
+import Foundation
 
 struct Task3_Impl1 {
     
     static func executeQuestion1() {
-        let inputAdjacencyList = StreamReader.readNumericAdjacencyList(from: "Task3_Input")
+        let inputAdjacencyList = readNumericAdjacencyList()
         let inputGraph = Graph(inputAdjacencyList)
         
         let startTime = CFAbsoluteTimeGetCurrent()
@@ -37,6 +38,21 @@ struct Task3_Impl1 {
 }
 
 extension Task3_Impl1 {
+    
+    fileprivate static func readNumericAdjacencyList() -> [[Int]] {
+        let filePath = Bundle.main.path(forResource: "Task3_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        let nonNumericSet = CharacterSet.decimalDigits.inverted
+        
+        var result = [[Int]]()
+        for line in reader {
+            let lineResult = line.trimmingCharacters(in: nonNumericSet).components(separatedBy: nonNumericSet).map({ Int($0)! })
+            result.append(lineResult)
+        }
+        
+        return result
+    }
     
     fileprivate static func minCut(in graph: Graph) -> Int {
         let iterationsCount = 20000 //graph.vertices.count * graph.vertices.count * Int(log(Double(graph.vertices.count)))

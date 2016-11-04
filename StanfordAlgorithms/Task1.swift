@@ -12,11 +12,12 @@
 // Because of the large size of this array, you should implement the fast divide-and-conquer algorithm covered in the video lectures.
 
 import CoreFoundation
+import Foundation
 
 struct Task1 {
     
     static func executeQuestion1() {
-        let inputArray = StreamReader.readNumericArray(from: "Task1_Input")
+        let inputArray = readInputArray()
         
         let startTime = CFAbsoluteTimeGetCurrent()
         let inversionsCount = inversions(in: inputArray)
@@ -28,6 +29,18 @@ struct Task1 {
 }
 
 extension Task1 {
+    
+    fileprivate static func readInputArray() -> [Int] {
+        let filePath = Bundle.main.path(forResource: "Task1_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var result = [Int]()
+        for line in reader {
+            result.append(Int(line)!)
+        }
+        
+        return result
+    }
     
     fileprivate static func inversions(in array: [Int]) -> Int {
         var inversions = 0

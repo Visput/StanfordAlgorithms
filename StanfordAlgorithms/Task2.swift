@@ -48,6 +48,7 @@
 // Use random pivot element.
 
 import CoreFoundation
+import Foundation
 
 struct Task2 {
 
@@ -91,7 +92,7 @@ struct Task2 {
         })
     }
     
-    static func execute4() {
+    static func executeQuestion4() {
         execute(pivotIndex: { _, startIndex, endIndex in
             return startIndex + Int(arc4random_uniform(UInt32(endIndex - startIndex + 1)))
         })
@@ -101,13 +102,25 @@ struct Task2 {
 extension Task2 {
     
     fileprivate static func execute(pivotIndex: ([Int], Int, Int) -> Int) {
-        let inputArray = StreamReader.readNumericArray(from: "Task2_Input")
+        let inputArray = readInputArray()
         
         let startTime = CFAbsoluteTimeGetCurrent()
         let comparisonsCount = comparisonsInQuickSort(for: inputArray, pivotIndex: pivotIndex)
         let finishTime = CFAbsoluteTimeGetCurrent()
         
         print("\n\ncomparisons: \(comparisonsCount), time: \(finishTime - startTime)\n\n")
+    }
+    
+    fileprivate static func readInputArray() -> [Int] {
+        let filePath = Bundle.main.path(forResource: "Task2_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var result = [Int]()
+        for line in reader {
+            result.append(Int(line)!)
+        }
+        
+        return result
     }
     
     fileprivate static func comparisonsInQuickSort(for array: [Int],

@@ -88,33 +88,3 @@ extension StreamReader : Sequence {
         }
     }
 }
-
-extension StreamReader {
-    
-    static func readNumericArray(from resourceFileName: String) -> [Int] {
-        let filePath = Bundle.main.path(forResource: resourceFileName, ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        var result = [Int]()
-        for line in reader {
-            result.append(Int(line)!)
-        }
-        
-        return result
-    }
-    
-    static func readNumericAdjacencyList(from resourceFileName: String) -> [[Int]] {
-        let filePath = Bundle.main.path(forResource: resourceFileName, ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        let nonNumericSet = CharacterSet.decimalDigits.inverted
-        
-        var result = [[Int]]()
-        for line in reader {
-            let lineResult = line.trimmingCharacters(in: nonNumericSet).components(separatedBy: nonNumericSet).map({ Int($0)! })
-            result.append(lineResult)
-        }
-        
-        return result
-    }
-}
