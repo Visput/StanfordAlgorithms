@@ -42,8 +42,8 @@ struct Task4 {
 extension Task4 {
     
     fileprivate static func readDirectedGraphs() -> (graph: DirectedGraph, reversedGraph: DirectedGraph) {
-        let filePath = Bundle.main.path(forResource: "Task4_TestInput", ofType: "txt")!
-        let numberOfVertices = 9
+        let filePath = Bundle.main.path(forResource: "Task4_Input", ofType: "txt")!
+        let numberOfVertices = 875714
         let reader = StreamReader(path: filePath)!
         
         let nonNumericSet = CharacterSet.decimalDigits.inverted
