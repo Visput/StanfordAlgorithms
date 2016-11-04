@@ -68,11 +68,9 @@ extension Task4 {
         for vertex in stride(from: graph.vertices.count - 1, through: 0, by: -1) {
             guard graph.vertices[vertex].explored == false else { continue }
             
-            var leaderVertex = vertex
             executeDepthFirstSearch(for: &graph,
                                     finishingTimes: &finishingTimes,
                                     currentTime: &currentTime,
-                                    leaderVertex: &leaderVertex,
                                     currentVertex: vertex)
         }
         
@@ -82,30 +80,20 @@ extension Task4 {
     @inline(__always) fileprivate static func executeDepthFirstSearch(for graph: inout DirectedGraph,
                                                                       finishingTimes: inout [Int],
                                                                       currentTime: inout Int,
-                                                                      leaderVertex: inout Int,
                                                                       currentVertex: Int) {
-        if graph.vertices[currentVertex].explored {
-            currentTime += 1
-            finishingTimes[leaderVertex] = currentTime
-            
-        } else {
-            graph.vertices[currentVertex].explored = true
-            
-            for edge in graph.vertices[currentVertex].edges {
-                leaderVertex = currentVertex
-                
+        graph.vertices[currentVertex].explored = true
+
+        for edge in graph.vertices[currentVertex].edges {
+            if graph.vertices[edge].explored == false {
                 executeDepthFirstSearch(for: &graph,
                                         finishingTimes: &finishingTimes,
                                         currentTime: &currentTime,
-                                        leaderVertex: &leaderVertex,
                                         currentVertex: edge)
-                
-                if finishingTimes[currentVertex] == -1 {
-                    currentTime += 1
-                    finishingTimes[currentVertex] = currentTime
-                }
             }
         }
+        
+        currentTime += 1
+        finishingTimes[currentVertex] = currentTime
     }
     
     fileprivate static func apply(finishingTimes: [Int], to graph: DirectedGraph) -> DirectedGraph {
@@ -113,8 +101,10 @@ extension Task4 {
         
         for vertex in 0 ..< graph.vertices.count {
             let targetVertex = finishingTimes[vertex]
-            resultGraph.vertices[vertex] = graph.vertices[targetVertex]
-            
+            resultGraph.vertices[targetVertex] = graph.vertices[vertex]
+        }
+        
+        for vertex in 0 ..< resultGraph.vertices.count {
             for (index, edge) in resultGraph.vertices[vertex].edges.enumerated() {
                 let targetEdge = finishingTimes[edge]
                 resultGraph.vertices[vertex].edges[index] = targetEdge
@@ -128,6 +118,8 @@ extension Task4 {
         var sccLengths = [Int]()
         
         for vertex in stride(from: graph.vertices.count - 1, through: 0, by: -1) {
+            guard graph.vertices[vertex].explored == false else { continue }
+            
             var pathLength = 0
             executeDepthFirstSearch(for: &graph,
                                     pathLength: &pathLength,
@@ -138,23 +130,21 @@ extension Task4 {
             }
         }
         
-        return sccLengths.sorted()
+        return sccLengths.sorted().reversed()
     }
     
     @inline(__always) fileprivate static func executeDepthFirstSearch(for graph: inout DirectedGraph,
                                                                       pathLength: inout Int,
                                                                       currentVertex: Int) {
-        if graph.vertices[currentVertex].explored == false {
-            graph.vertices[currentVertex].explored = true
-            
-            pathLength += 1
-            
-            for edge in graph.vertices[currentVertex].edges {
+        graph.vertices[currentVertex].explored = true
+        pathLength += 1
+        
+        for edge in graph.vertices[currentVertex].edges {
+            if graph.vertices[edge].explored == false {
                 executeDepthFirstSearch(for: &graph,
                                         pathLength: &pathLength,
                                         currentVertex: edge)
             }
-            
         }
     }
 }
