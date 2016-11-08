@@ -113,8 +113,8 @@
 		9F6500B01DCC0915009F62D4 /* Task4 */ = {
 			isa = PBXGroup;
 			children = (
-				9F6500B11DCC0933009F62D4 /* Task4_Input.txt */,
 				9F6500B31DCC093C009F62D4 /* Task4.swift */,
+				9F6500B11DCC0933009F62D4 /* Task4_Input.txt */,
 			);
 			name = Task4;
 			sourceTree = "<group>";

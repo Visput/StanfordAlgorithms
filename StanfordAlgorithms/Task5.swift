@@ -22,15 +22,132 @@
 // Remember the order of reporting DOES MATTER, and the string should be in the same order in which the above ten vertices are given. 
 // The string should not contain any spaces. Please type your answer in the space provided.
 
+import CoreFoundation
+import Foundation
+
 struct Task5 {
     
     static func executeQuestion1() {
-
+        let unreachableDistance = 1000000
+        var graph = readGraph()
+        let sourceVertex = graph.vertices.first!
+        
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
+        calculateDijkstraShortestPaths(for: sourceVertex, in: &graph)
+        
+        let finishTime = CFAbsoluteTimeGetCurrent()
+        print("time: \(finishTime - startTime)\n\n")
+        
+        for vertex in graph.vertices {
+            print("vertex: \(vertex.value), distance: \(vertex.distance ?? unreachableDistance)")
+        }
     }
 }
 
 extension Task5 {
     
+    fileprivate static func readGraph() -> Graph {
+        let filePath = Bundle.main.path(forResource: "Task5_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var graph = Graph()
+        
+        for line in reader {
+            var lineResults = line.components(separatedBy: "\t")
+            let vertexValue = Int(lineResults[0])!
+            
+            var edges = [Edge]()
+            for index in 1 ..< lineResults.count - 1 {
+                let edgeResults = lineResults[index].components(separatedBy: ",").flatMap({ Int($0) })
+                let edge = Edge(value: edgeResults[0], length: edgeResults[1])
+                edges.append(edge)
+            }
+            
+            let vertex = Vertex(value: vertexValue, edges: edges)
+            graph.vertices.append(vertex)
+        }
+        
+        return graph
+    }
+    
+    fileprivate static func calculateDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
+        var heap = MinHeap<Vertex>()
+        
+        let vertexIndex = vertex.value - 1
+        graph.vertices[vertexIndex].distance = 0
+        let updatedVertex = graph.vertices[vertexIndex]
+        processVertex(updatedVertex, in: &graph, heap: &heap)
+    }
+    
+    fileprivate static func processVertex(_ vertex: Vertex, in graph: inout Graph, heap: inout MinHeap<Vertex>) {
+        let vertexIndex = vertex.value - 1
+        graph.vertices[vertexIndex].explored = true
+        
+        for edge in vertex.edges {
+            let edgeVertexIndex = edge.value - 1
+            var edgeVertex = graph.vertices[edgeVertexIndex]
+            
+            if !edgeVertex.explored {
+                let newDistance = vertex.distance! + edge.length
+                
+                if edgeVertex.distance == nil {
+                    edgeVertex.distance = newDistance
+                    edgeVertex.indexInHeap = heap.insert(edgeVertex)
+                    graph.vertices[edgeVertexIndex] = edgeVertex
+                    
+                } else {
+                    if newDistance < edgeVertex.distance! {
+                        heap.delete(at: edgeVertex.indexInHeap!)
+                        edgeVertex.distance = newDistance
+                        edgeVertex.indexInHeap = heap.insert(edgeVertex)
+                        graph.vertices[edgeVertexIndex] = edgeVertex
+                    }
+                }
+            }
+        }
+        
+        if let minVertex = heap.extractMin() {
+            processVertex(minVertex, in: &graph, heap: &heap)
+        }
+    }
+}
+
+extension Task5 {
+    
+    fileprivate struct Graph {
+        
+        var vertices = [Vertex]()
+    }
+    
+    fileprivate struct Vertex: Comparable {
+        
+        let value: Int
+        let edges: [Edge]
+        var distance: Int? = nil
+        var indexInHeap: Int? = nil
+        var explored: Bool = false
+        
+        init(value: Int, edges: [Edge]) {
+            self.value = value
+            self.edges = edges
+        }
+        
+        static func <(lhs: Vertex, rhs: Vertex) -> Bool {
+            guard let lhsDistance = lhs.distance, let rhsDistance = rhs.distance else { return false }
+            return lhsDistance < rhsDistance
+        }
+        
+        static func ==(lhs: Vertex, rhs: Vertex) -> Bool {
+            return lhs.distance == rhs.distance
+        }
+    }
+    
+    fileprivate struct Edge {
+        
+        let value: Int
+        let length: Int
+    }
 }
 
 fileprivate struct MinHeap<Element: Comparable> {
@@ -41,12 +158,16 @@ fileprivate struct MinHeap<Element: Comparable> {
         return storage.isEmpty
     }
     
-    mutating func extractMin() -> Element? {
-        guard !storage.isEmpty else { return nil }
-        guard storage.count != 1 else { return storage.removeLast() }
+    var count: Int {
+        return storage.count
+    }
+    
+    @discardableResult mutating func extractMin() -> Element? {
+        guard !isEmpty else { return nil }
+        guard count != 1 else { return storage.removeLast() }
         
         let firstIndex = 0
-        let lastIndex = storage.count - 1
+        let lastIndex = count - 1
         
         swap(&storage[firstIndex], &storage[lastIndex])
         let element = storage.removeLast()
@@ -56,14 +177,14 @@ fileprivate struct MinHeap<Element: Comparable> {
         return element
     }
     
-    mutating func insert(_ element: Element) {
+    @discardableResult mutating func insert(_ element: Element) -> Int {
         storage.append(element)
         
-        upHeap(for: storage.count - 1)
+        return upHeap(for: count - 1)
     }
     
-    mutating func delete(at index: Int) -> Element {
-        let lastIndex = storage.count - 1
+    @discardableResult mutating func delete(at index: Int) -> Element {
+        let lastIndex = count - 1
         guard lastIndex != index else { return storage.removeLast() }
         
         swap(&storage[index], &storage[lastIndex])
@@ -74,32 +195,39 @@ fileprivate struct MinHeap<Element: Comparable> {
         return element
     }
     
-    fileprivate mutating func upHeap(for index: Int) {
+    @discardableResult fileprivate mutating func upHeap(for index: Int) -> Int {
         let parentIndex = self.parentIndex(for: index)
         
         if storage[parentIndex] > storage[index] {
             swap(&storage[index], &storage[parentIndex])
-            upHeap(for: parentIndex)
+            return upHeap(for: parentIndex)
+        } else {
+            return index
         }
     }
     
-    fileprivate mutating func downHeap(for index: Int) {
+    @discardableResult fileprivate mutating func downHeap(for index: Int) -> Int {
         if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
             swap(&storage[index], &storage[childIndex])
-            downHeap(for: childIndex)
+            return downHeap(for: childIndex)
+        } else {
+            return index
         }
     }
     
-    fileprivate mutating func upOrDownHeap(for index: Int) {
+    @discardableResult fileprivate mutating func upOrDownHeap(for index: Int) -> Int {
         let parentIndex = self.parentIndex(for: index)
         
         if storage[parentIndex] > storage[index] {
             swap(&storage[index], &storage[parentIndex])
-            upHeap(for: parentIndex)
+            return upHeap(for: parentIndex)
             
         } else if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
             swap(&storage[index], &storage[childIndex])
-            downHeap(for: childIndex)
+            return downHeap(for: childIndex)
+            
+        } else {
+            return index
         }
     }
 
@@ -111,10 +239,10 @@ fileprivate struct MinHeap<Element: Comparable> {
         let firstIndex = index * 2 + 1
         let secondIndex = firstIndex + 1
         
-        if firstIndex >= storage.count {
+        if firstIndex >= count {
             return nil
         } else {
-            if secondIndex >= storage.count {
+            if secondIndex >= count {
                 return firstIndex
             } else {
                 return storage[firstIndex] < storage[secondIndex] ? firstIndex : secondIndex
