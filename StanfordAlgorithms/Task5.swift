@@ -39,9 +39,14 @@ struct Task5 {
         let finishTime = CFAbsoluteTimeGetCurrent()
         print("time: \(finishTime - startTime)\n\n")
         
-        for vertex in graph.vertices {
-            print("vertex: \(vertex.value), distance: \(vertex.distance ?? unreachableDistance)")
+        var distances = ""
+        for vertexValue in [7,37,59,82,99,115,133,165,188,197] {
+            let vertexIndex = vertexValue - 1
+            let vertex = graph.vertices[vertexIndex]
+            let distance = vertex.distance ?? unreachableDistance
+            distances.append("\(distance),")
         }
+        print(distances)
     }
 }
 
@@ -72,36 +77,35 @@ extension Task5 {
     }
     
     fileprivate static func calculateDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
-        var heap = MinHeap<Vertex>()
+        var heap = MinVertexHeap()
         
         let vertexIndex = vertex.value - 1
-        graph.vertices[vertexIndex].distance = 0
         let updatedVertex = graph.vertices[vertexIndex]
+        updatedVertex.distance = 0
+    
         processVertex(updatedVertex, in: &graph, heap: &heap)
     }
     
-    fileprivate static func processVertex(_ vertex: Vertex, in graph: inout Graph, heap: inout MinHeap<Vertex>) {
+    fileprivate static func processVertex(_ vertex: Vertex, in graph: inout Graph, heap: inout MinVertexHeap) {
         let vertexIndex = vertex.value - 1
         graph.vertices[vertexIndex].explored = true
         
         for edge in vertex.edges {
             let edgeVertexIndex = edge.value - 1
-            var edgeVertex = graph.vertices[edgeVertexIndex]
+            let edgeVertex = graph.vertices[edgeVertexIndex]
             
             if !edgeVertex.explored {
                 let newDistance = vertex.distance! + edge.length
                 
                 if edgeVertex.distance == nil {
                     edgeVertex.distance = newDistance
-                    edgeVertex.indexInHeap = heap.insert(edgeVertex)
-                    graph.vertices[edgeVertexIndex] = edgeVertex
+                    heap.insert(edgeVertex)
                     
                 } else {
                     if newDistance < edgeVertex.distance! {
                         heap.delete(at: edgeVertex.indexInHeap!)
                         edgeVertex.distance = newDistance
-                        edgeVertex.indexInHeap = heap.insert(edgeVertex)
-                        graph.vertices[edgeVertexIndex] = edgeVertex
+                        heap.insert(edgeVertex)
                     }
                 }
             }
@@ -120,7 +124,7 @@ extension Task5 {
         var vertices = [Vertex]()
     }
     
-    fileprivate struct Vertex: Comparable {
+    fileprivate final class Vertex: Comparable {
         
         let value: Int
         let edges: [Edge]
@@ -148,105 +152,107 @@ extension Task5 {
         let value: Int
         let length: Int
     }
-}
-
-fileprivate struct MinHeap<Element: Comparable> {
     
-    private var storage = [Element]()
-    
-    var isEmpty: Bool {
-        return storage.isEmpty
-    }
-    
-    var count: Int {
-        return storage.count
-    }
-    
-    @discardableResult mutating func extractMin() -> Element? {
-        guard !isEmpty else { return nil }
-        guard count != 1 else { return storage.removeLast() }
+    fileprivate struct MinVertexHeap {
         
-        let firstIndex = 0
-        let lastIndex = count - 1
+        private var storage = [Vertex]()
         
-        swap(&storage[firstIndex], &storage[lastIndex])
-        let element = storage.removeLast()
-        
-        downHeap(for: 0)
-        
-        return element
-    }
-    
-    @discardableResult mutating func insert(_ element: Element) -> Int {
-        storage.append(element)
-        
-        return upHeap(for: count - 1)
-    }
-    
-    @discardableResult mutating func delete(at index: Int) -> Element {
-        let lastIndex = count - 1
-        guard lastIndex != index else { return storage.removeLast() }
-        
-        swap(&storage[index], &storage[lastIndex])
-        let element = storage.removeLast()
-        
-        upOrDownHeap(for: index)
-        
-        return element
-    }
-    
-    @discardableResult fileprivate mutating func upHeap(for index: Int) -> Int {
-        let parentIndex = self.parentIndex(for: index)
-        
-        if storage[parentIndex] > storage[index] {
-            swap(&storage[index], &storage[parentIndex])
-            return upHeap(for: parentIndex)
-        } else {
-            return index
+        var isEmpty: Bool {
+            return storage.isEmpty
         }
-    }
-    
-    @discardableResult fileprivate mutating func downHeap(for index: Int) -> Int {
-        if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
-            swap(&storage[index], &storage[childIndex])
-            return downHeap(for: childIndex)
-        } else {
-            return index
-        }
-    }
-    
-    @discardableResult fileprivate mutating func upOrDownHeap(for index: Int) -> Int {
-        let parentIndex = self.parentIndex(for: index)
         
-        if storage[parentIndex] > storage[index] {
-            swap(&storage[index], &storage[parentIndex])
-            return upHeap(for: parentIndex)
+        var count: Int {
+            return storage.count
+        }
+        
+        @discardableResult mutating func extractMin() -> Vertex? {
+            guard !isEmpty else { return nil }
+            guard count != 1 else { return storage.removeLast() }
             
-        } else if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
-            swap(&storage[index], &storage[childIndex])
-            return downHeap(for: childIndex)
+            let firstIndex = 0
+            let lastIndex = count - 1
             
-        } else {
-            return index
+            swapVertices(from: firstIndex, to: lastIndex)
+            let vertex = storage.removeLast()
+            
+            downHeap(for: 0)
+            
+            return vertex
         }
-    }
-
-    fileprivate func parentIndex(for index: Int) -> Int {
-        return (index - 1) / 2
-    }
-    
-    fileprivate func minChildIndex(for index: Int) -> Int? {
-        let firstIndex = index * 2 + 1
-        let secondIndex = firstIndex + 1
         
-        if firstIndex >= count {
-            return nil
-        } else {
-            if secondIndex >= count {
-                return firstIndex
-            } else {
-                return storage[firstIndex] < storage[secondIndex] ? firstIndex : secondIndex
+        mutating func insert(_ vertex: Vertex) {
+            storage.append(vertex)
+            
+            let index = storage.count - 1
+            storage[index].indexInHeap = index
+            
+            upHeap(for: count - 1)
+        }
+        
+        @discardableResult mutating func delete(at index: Int) -> Vertex {
+            let lastIndex = count - 1
+            guard lastIndex != index else { return storage.removeLast() }
+            
+            swapVertices(from: index, to: lastIndex)
+            let vertex = storage.removeLast()
+            
+            upOrDownHeap(for: index)
+            
+            return vertex
+        }
+        
+        fileprivate mutating func upHeap(for index: Int) {
+            let parentIndex = self.parentIndex(for: index)
+            
+            if storage[parentIndex] > storage[index] {
+                swapVertices(from: index, to: parentIndex)
+                upHeap(for: parentIndex)
             }
+        }
+        
+        fileprivate mutating func downHeap(for index: Int) {
+            if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
+                swapVertices(from: index, to: childIndex)
+                downHeap(for: childIndex)
+            }
+        }
+        
+        fileprivate mutating func upOrDownHeap(for index: Int) {
+            let parentIndex = self.parentIndex(for: index)
+            
+            if storage[parentIndex] > storage[index] {
+                swapVertices(from: index, to: parentIndex)
+                upHeap(for: parentIndex)
+                
+            } else if let childIndex = minChildIndex(for: index), storage[childIndex] < storage[index] {
+                swapVertices(from: index, to: childIndex)
+                downHeap(for: childIndex)
+            }
+        }
+        
+        fileprivate func parentIndex(for index: Int) -> Int {
+            return (index - 1) / 2
+        }
+        
+        fileprivate func minChildIndex(for index: Int) -> Int? {
+            let firstIndex = index * 2 + 1
+            let secondIndex = firstIndex + 1
+            
+            if firstIndex >= count {
+                return nil
+            } else {
+                if secondIndex >= count {
+                    return firstIndex
+                } else {
+                    return storage[firstIndex] < storage[secondIndex] ? firstIndex : secondIndex
+                }
+            }
+        }
+        
+        fileprivate mutating func swapVertices(from fromIndex: Int, to toIndex: Int) {
+            swap(&storage[fromIndex], &storage[toIndex])
+            storage[fromIndex].indexInHeap = fromIndex
+            storage[toIndex].indexInHeap = toIndex
         }
     }
 }
