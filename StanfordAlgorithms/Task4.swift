@@ -20,7 +20,6 @@
 // then write 0 for the remaining terms. Thus, if your algorithm computes only 3 SCCs whose sizes are 400, 300, and 100, 
 // then your answer should be "400,300,100,0,0" (without the quotes). (Note also that your answer should not have any spaces in it.)
 
-import CoreFoundation
 import Foundation
 
 struct Task4 {
@@ -28,14 +27,12 @@ struct Task4 {
     static func executeQuestion1() {
         var (graph, reversedGraph) = readDirectedGraphs()
     
-        let startTime = CFAbsoluteTimeGetCurrent()
-
-        let finishingTimes = computeFinishingTimes(for: &reversedGraph)
-        var modifiedGraph = apply(finishingTimes: finishingTimes, to: graph)
-        let sccLengths = computeStronglyConnectedComponentLengths(for: &modifiedGraph)
-
-        let finishTime = CFAbsoluteTimeGetCurrent()
-        print("\nscc lengths: \(sccLengths)\n, time: \(finishTime - startTime)\n\n")
+        Stopwatch.run({
+            let finishingTimes = computeFinishingTimes(for: &reversedGraph)
+            var modifiedGraph = apply(finishingTimes: finishingTimes, to: graph)
+            let sccLengths = computeStronglyConnectedComponentLengths(for: &modifiedGraph)
+            print("scc lengths: \(sccLengths)")
+        })
     }
 }
 

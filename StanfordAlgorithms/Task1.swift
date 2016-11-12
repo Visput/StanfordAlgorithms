@@ -11,7 +11,6 @@
 // Your task is to compute the number of inversions in the file given, where the ith row of the file indicates the ith entry of an array.
 // Because of the large size of this array, you should implement the fast divide-and-conquer algorithm covered in the video lectures.
 
-import CoreFoundation
 import Foundation
 
 struct Task1 {
@@ -19,11 +18,10 @@ struct Task1 {
     static func executeQuestion1() {
         let inputArray = readInputArray()
         
-        let startTime = CFAbsoluteTimeGetCurrent()
-        let inversionsCount = inversions(in: inputArray)
-        let finishTime = CFAbsoluteTimeGetCurrent()
-        
-        print("\n\ninversions: \(inversionsCount), time: \(finishTime - startTime)\n\n")
+        Stopwatch.run({
+            let inversionsCount = inversions(in: inputArray)
+            print("inversions: \(inversionsCount)")
+        })
     }
     
 }

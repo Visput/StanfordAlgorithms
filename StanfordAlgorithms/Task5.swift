@@ -22,7 +22,6 @@
 // Remember the order of reporting DOES MATTER, and the string should be in the same order in which the above ten vertices are given. 
 // The string should not contain any spaces. Please type your answer in the space provided.
 
-import CoreFoundation
 import Foundation
 
 struct Task5 {
@@ -32,21 +31,18 @@ struct Task5 {
         var graph = readGraph()
         let sourceVertex = graph.vertices.first!
         
-        let startTime = CFAbsoluteTimeGetCurrent()
-        
-        calculateDijkstraShortestPaths(for: sourceVertex, in: &graph)
-        
-        let finishTime = CFAbsoluteTimeGetCurrent()
-        print("time: \(finishTime - startTime)\n\n")
-        
-        var distances = ""
-        for vertexValue in [7,37,59,82,99,115,133,165,188,197] {
-            let vertexIndex = vertexValue - 1
-            let vertex = graph.vertices[vertexIndex]
-            let distance = vertex.distance ?? unreachableDistance
-            distances.append("\(distance),")
-        }
-        print(distances)
+        Stopwatch.run({
+            calculateDijkstraShortestPaths(for: sourceVertex, in: &graph)
+          
+            var distances = ""
+            for vertexValue in [7,37,59,82,99,115,133,165,188,197] {
+                let vertexIndex = vertexValue - 1
+                let vertex = graph.vertices[vertexIndex]
+                let distance = vertex.distance ?? unreachableDistance
+                distances.append("\(distance),")
+            }
+            print(distances)
+        })
     }
 }
 

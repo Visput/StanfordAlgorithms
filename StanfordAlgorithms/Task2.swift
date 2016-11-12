@@ -47,7 +47,6 @@
 // See the first question.
 // Use random pivot element.
 
-import CoreFoundation
 import Foundation
 
 struct Task2 {
@@ -104,11 +103,10 @@ extension Task2 {
     fileprivate static func execute(pivotIndex: ([Int], Int, Int) -> Int) {
         let inputArray = readInputArray()
         
-        let startTime = CFAbsoluteTimeGetCurrent()
-        let comparisonsCount = comparisonsInQuickSort(for: inputArray, pivotIndex: pivotIndex)
-        let finishTime = CFAbsoluteTimeGetCurrent()
-        
-        print("\n\ncomparisons: \(comparisonsCount), time: \(finishTime - startTime)\n\n")
+        Stopwatch.run({
+            let comparisonsCount = comparisonsInQuickSort(for: inputArray, pivotIndex: pivotIndex)
+            print("comparisons: \(comparisonsCount)")
+        })
     }
     
     fileprivate static func readInputArray() -> [Int] {

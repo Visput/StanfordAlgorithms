@@ -17,11 +17,13 @@
 		9F51E99A1DAA38CC00894DB6 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51E9971DAA38CC00894DB6 /* StreamReader.swift */; };
 		9F6500B21DCC0933009F62D4 /* Task4_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F6500B11DCC0933009F62D4 /* Task4_Input.txt */; };
 		9F6500B41DCC093C009F62D4 /* Task4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6500B31DCC093C009F62D4 /* Task4.swift */; };
-		9F7780781DBDC9EC00FC5088 /* Task3_Impl2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7780771DBDC9EC00FC5088 /* Task3_Impl2.swift */; };
 		9F80D8321DD171E20011892D /* Task5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80D8311DD171E20011892D /* Task5.swift */; };
 		9F80D8341DD171E80011892D /* Task5_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F80D8331DD171E80011892D /* Task5_Input.txt */; };
-		9F98061F1DBC495500F1C14C /* Task3_Impl1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98061E1DBC495500F1C14C /* Task3_Impl1.swift */; };
+		9F98061F1DBC495500F1C14C /* Task3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F98061E1DBC495500F1C14C /* Task3.swift */; };
 		9F9806211DBC49E700F1C14C /* Task3_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F9806201DBC49E700F1C14C /* Task3_Input.txt */; };
+		9F9E1ABE1DD7957D00876886 /* Task6_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F9E1ABD1DD7957D00876886 /* Task6_Input.txt */; };
+		9F9E1AC01DD7958400876886 /* Task6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E1ABF1DD7958400876886 /* Task6.swift */; };
+		9F9E1AC31DD797C400876886 /* Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E1AC21DD797C400876886 /* Stopwatch.swift */; };
 		9FACAECB1DB2BB040094052C /* Task2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FACAECA1DB2BB040094052C /* Task2.swift */; };
 		9FACAECD1DB2BB220094052C /* Task2_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9FACAECC1DB2BB220094052C /* Task2_Input.txt */; };
 /* End PBXBuildFile section */
@@ -39,11 +41,13 @@
 		9F51E9971DAA38CC00894DB6 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		9F6500B11DCC0933009F62D4 /* Task4_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task4_Input.txt; sourceTree = "<group>"; };
 		9F6500B31DCC093C009F62D4 /* Task4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task4.swift; sourceTree = "<group>"; };
-		9F7780771DBDC9EC00FC5088 /* Task3_Impl2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task3_Impl2.swift; sourceTree = "<group>"; };
 		9F80D8311DD171E20011892D /* Task5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task5.swift; sourceTree = "<group>"; };
 		9F80D8331DD171E80011892D /* Task5_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task5_Input.txt; sourceTree = "<group>"; };
-		9F98061E1DBC495500F1C14C /* Task3_Impl1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task3_Impl1.swift; sourceTree = "<group>"; };
+		9F98061E1DBC495500F1C14C /* Task3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task3.swift; sourceTree = "<group>"; };
 		9F9806201DBC49E700F1C14C /* Task3_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task3_Input.txt; sourceTree = "<group>"; };
+		9F9E1ABD1DD7957D00876886 /* Task6_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task6_Input.txt; sourceTree = "<group>"; };
+		9F9E1ABF1DD7958400876886 /* Task6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task6.swift; sourceTree = "<group>"; };
+		9F9E1AC21DD797C400876886 /* Stopwatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stopwatch.swift; sourceTree = "<group>"; };
 		9FACAECA1DB2BB040094052C /* Task2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task2.swift; sourceTree = "<group>"; };
 		9FACAECC1DB2BB220094052C /* Task2_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task2_Input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,13 +82,14 @@
 		9F51E9851DAA38B300894DB6 /* StanfordAlgorithms */ = {
 			isa = PBXGroup;
 			children = (
+				9F9E1ABC1DD7957400876886 /* Task6 */,
 				9F80D8301DD171D70011892D /* Task5 */,
 				9F6500B01DCC0915009F62D4 /* Task4 */,
 				9F98061D1DBC492000F1C14C /* Task3 */,
 				9FACAEC91DB2BAF40094052C /* Task2 */,
 				9F51E99B1DAA38D000894DB6 /* Task1 */,
 				9F51E9861DAA38B300894DB6 /* AppDelegate.swift */,
-				9F51E9971DAA38CC00894DB6 /* StreamReader.swift */,
+				9F9E1AC11DD7979600876886 /* Utils */,
 				9F51E99C1DAA3B6C00894DB6 /* Other */,
 			);
 			path = StanfordAlgorithms;
@@ -131,12 +136,29 @@
 		9F98061D1DBC492000F1C14C /* Task3 */ = {
 			isa = PBXGroup;
 			children = (
-				9F11DE0E1DBC803B0017E4B6 /* Task3_TestInput.txt */,
-				9F98061E1DBC495500F1C14C /* Task3_Impl1.swift */,
-				9F7780771DBDC9EC00FC5088 /* Task3_Impl2.swift */,
+				9F98061E1DBC495500F1C14C /* Task3.swift */,
 				9F9806201DBC49E700F1C14C /* Task3_Input.txt */,
+				9F11DE0E1DBC803B0017E4B6 /* Task3_TestInput.txt */,
 			);
 			name = Task3;
+			sourceTree = "<group>";
+		};
+		9F9E1ABC1DD7957400876886 /* Task6 */ = {
+			isa = PBXGroup;
+			children = (
+				9F9E1ABF1DD7958400876886 /* Task6.swift */,
+				9F9E1ABD1DD7957D00876886 /* Task6_Input.txt */,
+			);
+			name = Task6;
+			sourceTree = "<group>";
+		};
+		9F9E1AC11DD7979600876886 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9F51E9971DAA38CC00894DB6 /* StreamReader.swift */,
+				9F9E1AC21DD797C400876886 /* Stopwatch.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		9FACAEC91DB2BAF40094052C /* Task2 */ = {
@@ -211,6 +233,7 @@
 				9F6500B21DCC0933009F62D4 /* Task4_Input.txt in Resources */,
 				9F51E98B1DAA38B300894DB6 /* Assets.xcassets in Resources */,
 				9F9806211DBC49E700F1C14C /* Task3_Input.txt in Resources */,
+				9F9E1ABE1DD7957D00876886 /* Task6_Input.txt in Resources */,
 				9F80D8341DD171E80011892D /* Task5_Input.txt in Resources */,
 				9FACAECD1DB2BB220094052C /* Task2_Input.txt in Resources */,
 				9F51E98E1DAA38B300894DB6 /* Main.storyboard in Resources */,
@@ -225,15 +248,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F98061F1DBC495500F1C14C /* Task3_Impl1.swift in Sources */,
+				9F98061F1DBC495500F1C14C /* Task3.swift in Sources */,
 				9FACAECB1DB2BB040094052C /* Task2.swift in Sources */,
 				9F51E99A1DAA38CC00894DB6 /* StreamReader.swift in Sources */,
 				9F51E9981DAA38CC00894DB6 /* Task1.swift in Sources */,
-				9F7780781DBDC9EC00FC5088 /* Task3_Impl2.swift in Sources */,
+				9F9E1AC31DD797C400876886 /* Stopwatch.swift in Sources */,
 				9F6500B41DCC093C009F62D4 /* Task4.swift in Sources */,
 				9F80D8321DD171E20011892D /* Task5.swift in Sources */,
 				9F51E9891DAA38B300894DB6 /* ViewController.swift in Sources */,
 				9F51E9871DAA38B300894DB6 /* AppDelegate.swift in Sources */,
+				9F9E1AC01DD7958400876886 /* Task6.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
