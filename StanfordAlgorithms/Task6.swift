@@ -16,17 +16,26 @@
 // Write your numeric answer (an integer between 0 and 20001) in the space provided.
 
 import Foundation
-import CoreFoundation
 
 struct Task6 {
     
     static func executeQuestion1() {
+        let array = readInputArray()
+        let minValue = -10000
+        let maxValue = 10000
         
+        Stopwatch.run({
+            let set = Set(array)
+            
+        })
     }
 }
 
 extension Task6 {
     
+}
+
+extension Task6 {
     
     fileprivate static func readInputArray() -> [Int] {
         let filePath = Bundle.main.path(forResource: "Task6_Input", ofType: "txt")!

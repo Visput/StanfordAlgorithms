@@ -109,18 +109,6 @@ extension Task2 {
         })
     }
     
-    fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task2_Input", ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        var result = [Int]()
-        for line in reader {
-            result.append(Int(line)!)
-        }
-        
-        return result
-    }
-    
     fileprivate static func comparisonsInQuickSort(for array: [Int],
                                                    pivotIndex: ([Int], Int, Int) -> Int) -> Int {
         var comparisons = 0
@@ -171,5 +159,20 @@ extension Task2 {
             quickSort(for: &array, pivotIndex: pivotIndex, startIndex: smallerElementsLastIndex + 1, endIndex: endIndex, comparisons: &comparisons)
             
         }
+    }
+}
+
+extension Task2 {
+    
+    fileprivate static func readInputArray() -> [Int] {
+        let filePath = Bundle.main.path(forResource: "Task2_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var result = [Int]()
+        for line in reader {
+            result.append(Int(line)!)
+        }
+        
+        return result
     }
 }

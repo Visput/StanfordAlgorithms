@@ -28,18 +28,6 @@ struct Task1 {
 
 extension Task1 {
     
-    fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task1_Input", ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        var result = [Int]()
-        for line in reader {
-            result.append(Int(line)!)
-        }
-        
-        return result
-    }
-    
     fileprivate static func inversions(in array: [Int]) -> Int {
         var inversions = 0
         mergeSort(for: array, inversions: &inversions)
@@ -107,5 +95,20 @@ extension Task1 {
         }
         
         return mergedArray
+    }
+}
+
+extension Task1 {
+    
+    fileprivate static func readInputArray() -> [Int] {
+        let filePath = Bundle.main.path(forResource: "Task1_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var result = [Int]()
+        for line in reader {
+            result.append(Int(line)!)
+        }
+        
+        return result
     }
 }

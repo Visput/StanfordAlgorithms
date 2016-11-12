@@ -38,24 +38,6 @@ struct Task4 {
 
 extension Task4 {
     
-    fileprivate static func readDirectedGraphs() -> (graph: DirectedGraph, reversedGraph: DirectedGraph) {
-        let filePath = Bundle.main.path(forResource: "Task4_Input", ofType: "txt")!
-        let numberOfVertices = 875714
-        let reader = StreamReader(path: filePath)!
-        
-        var graph = DirectedGraph(numberOfVertices: numberOfVertices)
-        var reversedGraph = DirectedGraph(numberOfVertices: numberOfVertices)
-        
-        for line in reader {
-            let lineResult = line.components(separatedBy: " ").flatMap({ Int($0) })
-            
-            reversedGraph.vertices[lineResult[1] - 1].edges.append(lineResult[0] - 1)
-            graph.vertices[lineResult[0] - 1].edges.append(lineResult[1] - 1)
-        }
-        
-        return (graph, reversedGraph)
-    }
-    
     fileprivate static func computeFinishingTimes(for graph: inout DirectedGraph) -> [Int] {
         var finishingTimes = [Int](repeating: -1, count: graph.vertices.count)
         var currentTime = -1
@@ -158,5 +140,26 @@ extension Task4 {
     fileprivate struct Vertex {
         var explored = false
         var edges = [Int]()
+    }
+}
+
+extension Task4 {
+    
+    fileprivate static func readDirectedGraphs() -> (graph: DirectedGraph, reversedGraph: DirectedGraph) {
+        let filePath = Bundle.main.path(forResource: "Task4_Input", ofType: "txt")!
+        let numberOfVertices = 875714
+        let reader = StreamReader(path: filePath)!
+        
+        var graph = DirectedGraph(numberOfVertices: numberOfVertices)
+        var reversedGraph = DirectedGraph(numberOfVertices: numberOfVertices)
+        
+        for line in reader {
+            let lineResult = line.components(separatedBy: " ").flatMap({ Int($0) })
+            
+            reversedGraph.vertices[lineResult[1] - 1].edges.append(lineResult[0] - 1)
+            graph.vertices[lineResult[0] - 1].edges.append(lineResult[1] - 1)
+        }
+        
+        return (graph, reversedGraph)
     }
 }

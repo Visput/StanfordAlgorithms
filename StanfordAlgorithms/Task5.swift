@@ -48,30 +48,6 @@ struct Task5 {
 
 extension Task5 {
     
-    fileprivate static func readGraph() -> Graph {
-        let filePath = Bundle.main.path(forResource: "Task5_Input", ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        var graph = Graph()
-        
-        for line in reader {
-            var lineResults = line.components(separatedBy: "\t")
-            let vertexValue = Int(lineResults[0])!
-            
-            var edges = [Edge]()
-            for index in 1 ..< lineResults.count - 1 {
-                let edgeResults = lineResults[index].components(separatedBy: ",").flatMap({ Int($0) })
-                let edge = Edge(value: edgeResults[0], length: edgeResults[1])
-                edges.append(edge)
-            }
-            
-            let vertex = Vertex(value: vertexValue, edges: edges)
-            graph.vertices.append(vertex)
-        }
-        
-        return graph
-    }
-    
     fileprivate static func calculateDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
         var heap = MinVertexHeap()
         
@@ -250,5 +226,32 @@ extension Task5 {
             storage[fromIndex].indexInHeap = fromIndex
             storage[toIndex].indexInHeap = toIndex
         }
+    }
+}
+
+extension Task5 {
+    
+    fileprivate static func readGraph() -> Graph {
+        let filePath = Bundle.main.path(forResource: "Task5_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        var graph = Graph()
+        
+        for line in reader {
+            var lineResults = line.components(separatedBy: "\t")
+            let vertexValue = Int(lineResults[0])!
+            
+            var edges = [Edge]()
+            for index in 1 ..< lineResults.count - 1 {
+                let edgeResults = lineResults[index].components(separatedBy: ",").flatMap({ Int($0) })
+                let edge = Edge(value: edgeResults[0], length: edgeResults[1])
+                edges.append(edge)
+            }
+            
+            let vertex = Vertex(value: vertexValue, edges: edges)
+            graph.vertices.append(vertex)
+        }
+        
+        return graph
     }
 }

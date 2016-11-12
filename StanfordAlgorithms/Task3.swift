@@ -37,21 +37,6 @@ struct Task3 {
 
 extension Task3 {
     
-    fileprivate static func readNumericAdjacencyList() -> [[Int]] {
-        let filePath = Bundle.main.path(forResource: "Task3_Input", ofType: "txt")!
-        let reader = StreamReader(path: filePath)!
-        
-        let nonNumericSet = CharacterSet.decimalDigits.inverted
-        
-        var result = [[Int]]()
-        for line in reader {
-            let lineResult = line.trimmingCharacters(in: nonNumericSet).components(separatedBy: nonNumericSet).map({ Int($0)! })
-            result.append(lineResult)
-        }
-        
-        return result
-    }
-    
     fileprivate static func minCut(in graph: Graph) -> Int {
         let iterationsCount = 20000 //graph.vertices.count * graph.vertices.count * Int(log(Double(graph.vertices.count)))
         
@@ -274,5 +259,23 @@ extension Task3 {
             self.value = value
             self.count = count
         }
+    }
+}
+
+extension Task3 {
+    
+    fileprivate static func readNumericAdjacencyList() -> [[Int]] {
+        let filePath = Bundle.main.path(forResource: "Task3_Input", ofType: "txt")!
+        let reader = StreamReader(path: filePath)!
+        
+        let nonNumericSet = CharacterSet.decimalDigits.inverted
+        
+        var result = [[Int]]()
+        for line in reader {
+            let lineResult = line.trimmingCharacters(in: nonNumericSet).components(separatedBy: nonNumericSet).map({ Int($0)! })
+            result.append(lineResult)
+        }
+        
+        return result
     }
 }
