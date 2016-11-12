@@ -12,7 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        Task5.executeQuestion1()
+        Task6.executeQuestion1()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
