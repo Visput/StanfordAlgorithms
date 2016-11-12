@@ -1,5 +1,5 @@
 //
-//  Task6.swift
+//  Task6_1.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 11/12/16.
@@ -17,7 +17,7 @@
 
 import Foundation
 
-struct Task6 {
+struct Task6_1 {
     
     static func executeQuestion1() {
         let array = readInputArray()
@@ -25,20 +25,41 @@ struct Task6 {
         let maxValue = 10000
         
         Stopwatch.run({
-            let set = Set(array)
+            let resultCount = computeResultCountIn2SumProblem(in: array, minValue: minValue, maxValue: maxValue)
+            print("result count: \(resultCount)")
             
         })
     }
 }
 
-extension Task6 {
+extension Task6_1 {
     
+    static func computeResultCountIn2SumProblem(in inputArray: [Int], minValue: Int, maxValue: Int) -> Int {
+        let inputSet = Set(inputArray)
+        
+        var outputSet = Set<Int>()
+        
+        for target in minValue ... maxValue {
+            guard !outputSet.contains(target) else { continue }
+            
+            for value1 in inputArray {
+                let value2 = target - value1
+                guard value1 != value2 else { continue }
+                
+                if inputSet.contains(value2) {
+                    outputSet.insert(target)
+                }
+            }
+        }
+        
+        return outputSet.count
+    }
 }
 
-extension Task6 {
+extension Task6_1 {
     
     fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task6_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task6_1_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         var result = [Int]()

@@ -126,7 +126,6 @@ extension Task4 {
     }
 }
 
-
 extension Task4 {
     
     fileprivate struct DirectedGraph {

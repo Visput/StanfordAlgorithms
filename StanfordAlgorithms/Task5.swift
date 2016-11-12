@@ -32,7 +32,7 @@ struct Task5 {
         let sourceVertex = graph.vertices.first!
         
         Stopwatch.run({
-            calculateDijkstraShortestPaths(for: sourceVertex, in: &graph)
+            computeDijkstraShortestPaths(for: sourceVertex, in: &graph)
           
             var distances = ""
             for vertexValue in [7,37,59,82,99,115,133,165,188,197] {
@@ -48,7 +48,7 @@ struct Task5 {
 
 extension Task5 {
     
-    fileprivate static func calculateDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
+    fileprivate static func computeDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
         var heap = MinVertexHeap()
         
         let vertexIndex = vertex.value - 1
