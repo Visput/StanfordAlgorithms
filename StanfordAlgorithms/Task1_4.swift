@@ -1,5 +1,5 @@
 //
-//  Task4.swift
+//  Task1_4.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 11/3/16.
@@ -22,7 +22,7 @@
 
 import Foundation
 
-struct Task4 {
+struct Task1_4 {
     
     static func executeQuestion1() {
         var (graph, reversedGraph) = readDirectedGraphs()
@@ -36,7 +36,7 @@ struct Task4 {
     }
 }
 
-extension Task4 {
+extension Task1_4 {
     
     fileprivate static func computeFinishingTimes(for graph: inout DirectedGraph) -> [Int] {
         var finishingTimes = [Int](repeating: -1, count: graph.vertices.count)
@@ -126,7 +126,7 @@ extension Task4 {
     }
 }
 
-extension Task4 {
+extension Task1_4 {
     
     fileprivate struct DirectedGraph {
         var vertices: [Vertex]
@@ -142,10 +142,10 @@ extension Task4 {
     }
 }
 
-extension Task4 {
+extension Task1_4 {
     
     fileprivate static func readDirectedGraphs() -> (graph: DirectedGraph, reversedGraph: DirectedGraph) {
-        let filePath = Bundle.main.path(forResource: "Task4_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_4_Input", ofType: "txt")!
         let numberOfVertices = 875714
         let reader = StreamReader(path: filePath)!
         

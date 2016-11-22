@@ -1,5 +1,5 @@
 //
-//  Task5.swift
+//  Task1_5.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 11/7/16.
@@ -24,7 +24,7 @@
 
 import Foundation
 
-struct Task5 {
+struct Task1_5 {
     
     static func executeQuestion1() {
         let unreachableDistance = 1000000
@@ -46,7 +46,7 @@ struct Task5 {
     }
 }
 
-extension Task5 {
+extension Task1_5 {
     
     fileprivate static func computeDijkstraShortestPaths(for vertex: Vertex, in graph: inout Graph) {
         var heap = MinVertexHeap()
@@ -89,7 +89,7 @@ extension Task5 {
     }
 }
 
-extension Task5 {
+extension Task1_5 {
     
     fileprivate struct Graph {
         
@@ -229,10 +229,10 @@ extension Task5 {
     }
 }
 
-extension Task5 {
+extension Task1_5 {
     
     fileprivate static func readGraph() -> Graph {
-        let filePath = Bundle.main.path(forResource: "Task5_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_5_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         var graph = Graph()

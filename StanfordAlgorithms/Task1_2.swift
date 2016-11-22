@@ -1,5 +1,5 @@
 //
-//  Task2.swift
+//  Task1_2.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 10/15/16.
@@ -49,7 +49,7 @@
 
 import Foundation
 
-struct Task2 {
+struct Task1_2 {
 
     static func executeQuestion1() {
         execute(pivotIndex: { _, startIndex, _ in
@@ -98,7 +98,7 @@ struct Task2 {
     }
 }
 
-extension Task2 {
+extension Task1_2 {
     
     fileprivate static func execute(pivotIndex: ([Int], Int, Int) -> Int) {
         let inputArray = readInputArray()
@@ -162,10 +162,10 @@ extension Task2 {
     }
 }
 
-extension Task2 {
+extension Task1_2 {
     
     fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task2_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_2_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         var result = [Int]()

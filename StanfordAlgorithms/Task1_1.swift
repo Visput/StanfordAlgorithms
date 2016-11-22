@@ -1,5 +1,5 @@
 //
-//  Task1.swift
+//  Task1_1.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 10/8/16.
@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct Task1 {
+struct Task1_1 {
     
     static func executeQuestion1() {
         let inputArray = readInputArray()
@@ -26,7 +26,7 @@ struct Task1 {
     
 }
 
-extension Task1 {
+extension Task1_1 {
     
     fileprivate static func inversions(in array: [Int]) -> Int {
         var inversions = 0
@@ -98,10 +98,10 @@ extension Task1 {
     }
 }
 
-extension Task1 {
+extension Task1_1 {
     
     fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task1_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_1_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         var result = [Int]()

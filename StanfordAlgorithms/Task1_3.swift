@@ -1,5 +1,5 @@
 //
-//  Task3.swift
+//  Task1_3.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 10/22/16.
@@ -22,7 +22,7 @@
 
 import Foundation
 
-struct Task3 {
+struct Task1_3 {
     
     static func executeQuestion1() {
         let inputAdjacencyList = readNumericAdjacencyList()
@@ -35,7 +35,7 @@ struct Task3 {
     }
 }
 
-extension Task3 {
+extension Task1_3 {
     
     fileprivate static func minCut(in graph: Graph) -> Int {
         let iterationsCount = 20000 //graph.vertices.count * graph.vertices.count * Int(log(Double(graph.vertices.count)))
@@ -224,7 +224,7 @@ extension Task3 {
     }
 }
 
-extension Task3 {
+extension Task1_3 {
     
     fileprivate struct Graph {
         var vertices: [Vertex]
@@ -262,10 +262,10 @@ extension Task3 {
     }
 }
 
-extension Task3 {
+extension Task1_3 {
     
     fileprivate static func readNumericAdjacencyList() -> [[Int]] {
-        let filePath = Bundle.main.path(forResource: "Task3_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_3_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         let nonNumericSet = CharacterSet.decimalDigits.inverted

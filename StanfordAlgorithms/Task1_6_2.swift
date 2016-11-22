@@ -1,5 +1,5 @@
 //
-//  Task6_2_2.swift
+//  Task1_6_2_2.swift
 //  StanfordAlgorithms
 //
 //  Created by Uladzimir Papko on 11/12/16.
@@ -17,7 +17,7 @@
 
 import Foundation
 
-struct Task6_2 {
+struct Task1_6_2 {
     
     static func executeQuestion1() {
         let array = readInputArray()
@@ -30,7 +30,7 @@ struct Task6_2 {
     }
 }
 
-extension Task6_2 {
+extension Task1_6_2 {
     
     static func computeMedianSumMod(in inputArray: [Int]) -> Int {
         var minHeap = IntHeap(type: .min)
@@ -68,7 +68,7 @@ extension Task6_2 {
     }
 }
 
-extension Task6_2 {
+extension Task1_6_2 {
     
     fileprivate struct IntHeap {
         
@@ -205,10 +205,10 @@ extension Task6_2 {
     }
 }
 
-extension Task6_2 {
+extension Task1_6_2 {
     
     fileprivate static func readInputArray() -> [Int] {
-        let filePath = Bundle.main.path(forResource: "Task6_2_Input", ofType: "txt")!
+        let filePath = Bundle.main.path(forResource: "Task1_6_2_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         
         let nonNumericSet = CharacterSet.decimalDigits.inverted
