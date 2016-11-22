@@ -9,7 +9,6 @@
 // Question 1:
 // In this programming problem and the next you'll code up the greedy algorithms from lecture for minimizing the weighted sum of completion times..
 // The file describes a set of jobs with positive and integral weights and lengths. It has the format
-// [number_of_jobs]
 // [job_1_weight] [job_1_length]
 // [job_2_weight] [job_2_length]
 // ...
@@ -31,28 +30,28 @@ import Foundation
 struct Task2_1_1And2 {
     
     static func executeQuestion1() {
-        var inputJobs = readInputJobs()
+        var jobs = readJobs()
         
         Stopwatch.run({
-            for (index, job) in inputJobs.enumerated() {
-                inputJobs[index].priority = Double(job.weight - job.length)
+            for (index, job) in jobs.enumerated() {
+                jobs[index].priority = Double(job.weight - job.length)
             }
             
-            let completionTime = computeCompletionTime(for: &inputJobs)
+            let completionTime = computeCompletionTime(for: &jobs)
             print("completion time: \(completionTime)")
             
         })
     }
     
     static func executeQuestion2() {
-        var inputJobs = readInputJobs()
+        var jobs = readJobs()
         
         Stopwatch.run({
-            for (index, job) in inputJobs.enumerated() {
-                inputJobs[index].priority = Double(job.weight) / Double(job.length)
+            for (index, job) in jobs.enumerated() {
+                jobs[index].priority = Double(job.weight) / Double(job.length)
             }
             
-            let completionTime = computeCompletionTime(for: &inputJobs)
+            let completionTime = computeCompletionTime(for: &jobs)
             print("completion time: \(completionTime)")
             
         })
@@ -102,7 +101,7 @@ extension Task2_1_1And2 {
 
 extension Task2_1_1And2 {
     
-    fileprivate static func readInputJobs() -> [Job] {
+    fileprivate static func readJobs() -> [Job] {
         let filePath = Bundle.main.path(forResource: "Task2_1_1And2_Input", ofType: "txt")!
         let reader = StreamReader(path: filePath)!
         

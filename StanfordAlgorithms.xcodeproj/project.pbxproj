@@ -13,6 +13,7 @@
 		9F3369CC1DE40623006C5E7D /* Task2_1_1And2_TestInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F3369CB1DE40623006C5E7D /* Task2_1_1And2_TestInput.txt */; };
 		9F3369CE1DE40675006C5E7D /* Task2_1_3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3369CD1DE40675006C5E7D /* Task2_1_3.swift */; };
 		9F3369D01DE40715006C5E7D /* Task2_1_3_Input.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F3369CF1DE40715006C5E7D /* Task2_1_3_Input.txt */; };
+		9F3369D21DE4124D006C5E7D /* Task2_1_3_TestInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F3369D11DE4124D006C5E7D /* Task2_1_3_TestInput.txt */; };
 		9F51E9871DAA38B300894DB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51E9861DAA38B300894DB6 /* AppDelegate.swift */; };
 		9F51E9891DAA38B300894DB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51E9881DAA38B300894DB6 /* ViewController.swift */; };
 		9F51E98B1DAA38B300894DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F51E98A1DAA38B300894DB6 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		9F3369CB1DE40623006C5E7D /* Task2_1_1And2_TestInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task2_1_1And2_TestInput.txt; sourceTree = "<group>"; };
 		9F3369CD1DE40675006C5E7D /* Task2_1_3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task2_1_3.swift; sourceTree = "<group>"; };
 		9F3369CF1DE40715006C5E7D /* Task2_1_3_Input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task2_1_3_Input.txt; sourceTree = "<group>"; };
+		9F3369D11DE4124D006C5E7D /* Task2_1_3_TestInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Task2_1_3_TestInput.txt; sourceTree = "<group>"; };
 		9F51E9831DAA38B300894DB6 /* StanfordAlgorithms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StanfordAlgorithms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F51E9861DAA38B300894DB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F51E9881DAA38B300894DB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9F3369CD1DE40675006C5E7D /* Task2_1_3.swift */,
+				9F3369D11DE4124D006C5E7D /* Task2_1_3_TestInput.txt */,
 				9F3369CF1DE40715006C5E7D /* Task2_1_3_Input.txt */,
 				9F3369C71DE3FA72006C5E7D /* Task2_1_1And2.swift */,
 				9F3369CB1DE40623006C5E7D /* Task2_1_1And2_TestInput.txt */,
@@ -279,6 +282,7 @@
 				9F6500B21DCC0933009F62D4 /* Task1_4_Input.txt in Resources */,
 				9F51E98B1DAA38B300894DB6 /* Assets.xcassets in Resources */,
 				9F9806211DBC49E700F1C14C /* Task1_3_Input.txt in Resources */,
+				9F3369D21DE4124D006C5E7D /* Task2_1_3_TestInput.txt in Resources */,
 				9F9E1ABE1DD7957D00876886 /* Task1_6_1_Input.txt in Resources */,
 				9F80D8341DD171E80011892D /* Task1_5_Input.txt in Resources */,
 				9FACAECD1DB2BB220094052C /* Task1_2_Input.txt in Resources */,
